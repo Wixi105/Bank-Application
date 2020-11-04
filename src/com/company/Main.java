@@ -1,8 +1,6 @@
 package com.company;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 //import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,7 +8,7 @@ import java.util.Scanner;
 
 
 public class Main {
-    private static final Date date = new Date();
+//    private static final Date date = new Date();
 //    private static final SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
     private static final Scanner scanner = new Scanner(System.in);
     private static ArrayList<Account> accounts = new ArrayList<>();
@@ -30,9 +28,9 @@ public class Main {
             Connection conn = DriverManager.getConnection(dbUrl,dbUser,dbPass);
             System.out.println("Connection Successful");
             Account account1 = createAccount();
-//            Statement statement = conn.createStatement();
-//            String sql = "INSERT INTO Customers(FIRSTNAME,MIDDLENAME,LASTNAME,EMAIL,ACCOUNT_NUMBER,PHONENO) " + " VALUES('John',' ','Doe','eric@gmail.com','1123456','0203663447');";
-//            statement.executeQuery(sql);
+            Statement statement = conn.createStatement();
+            String sql = "INSERT INTO Customers(FIRSTNAME,MIDDLENAME,LASTNAME,EMAIL,ACCOUNT_NUMBER,PHONENO) " + " VALUES('"firstName"',' ','"lastName"','eric@gmail.com','1123456','0203663447');";
+            statement.executeQuery(sql);
 
         } catch (SQLException e) {
             throw new Error("Error ", e);
