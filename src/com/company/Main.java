@@ -8,11 +8,8 @@ import java.util.Scanner;
 
 
 public class Main {
-private static final Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
     private static final ArrayList<Account> accounts = new ArrayList<>();
-
-
-
     public static void main(String[] args) {
 
         Account account1 = createAccount();
@@ -58,6 +55,7 @@ private static final Scanner scanner = new Scanner(System.in);
             String dbUser = "odin";
             String dbPass = "123456";
             Connection conn = DriverManager.getConnection(dbUrl,dbUser,dbPass);
+
             String sql = "INSERT INTO Customers(FIRSTNAME,MIDDLENAME,LASTNAME,EMAIL,ACCOUNT_NUMBER,PHONENO) VALUES(?,?,?,?,?,?);";
             PreparedStatement pstatement = conn.prepareStatement(sql);
 
@@ -71,9 +69,14 @@ private static final Scanner scanner = new Scanner(System.in);
 
             boolean check = true;
             while(check){
-                System.out.println("Personal Information has been stored. Press 1 to initiate deposit or 2 to cancel");
+                System.out.println("Personal Information has been stored. Press 1 to initiate deposit or 0 to view Menu");
                 int userOption = scanner.nextInt();
                 switch (userOption){
+                    case 0 ->{
+                        System.out.println("----WELCOME TO HULU BANK----");
+                        System.out.println(" Press 0 - To Print Menu \n Press 1 - To initiate deposit \n Press 2 - To view account details" +
+                                "\n Press 3 - To remove your account");
+                    }
                     case 1 -> {
                         int depositAmount = depositAmount();
                         String sql2 = "UPDATE Customers SET BALANCE = ? WHERE ACCOUNT_NUMBER = ?";
@@ -81,12 +84,30 @@ private static final Scanner scanner = new Scanner(System.in);
                         preparedStatement.setInt(1,depositAmount);
                         preparedStatement.setString(2,accountNumber);
                         preparedStatement.executeUpdate();
-                        System.out.print("Your balance is now: " + depositAmount);
                         check = false;
                     }
                     case 2 ->{
+                        PreparedStatement statement = conn.prepareStatement("SELECT FIRSTNAME, MIDDLENAME, LASTNAME, ACCOUNT_NUMBER, PHONENO, BALANCE FROM Customers WHERE ACCOUNT_NUMBER = ?");
+                        statement.setString(1,accountNumber);
+                        ResultSet result = statement.executeQuery();
+
+                        while(result.next()){
+                            String fName = result.getString("FIRSTNAME");
+                            String mName = result.getString("MIDDLENAME");
+                            String lName = result.getString("LASTNAME");
+                            String accNumber = result.getString("ACCOUNT_NUMBER");
+                            String phoneNumber = result.getString("PHONENO");
+                            System.out.println("Account Details for Customer");
+                            System.out.println("Your account name is : " +fName+" "+mName+ " "+" "+lName + "\n Your account number is " + accNumber +"\n Your phone number is: " + phoneNumber);
+                            check =false;
+                        }
+                    }
+                    case 3 -> {
+                        PreparedStatement statement = conn.prepareStatement("DELETE FROM Customers WHERE ACCOUNT_NUMBER = ?");
+                        statement.setString(1,accountNumber);
+                        statement.executeUpdate();
+                        System.out.println("Account Deleted successfully. \n Thank you for Banking with Us");
                         check = false;
-                        System.out.print("Your account balance remains : " + balance);
                     }
                 }
 
@@ -106,28 +127,5 @@ private static final Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
 
-    public static void removeAccount(Account account){
-        if(accounts.contains(account)){
-            System.out.println("The account with account name "+ account.getFullName() +" is being removed. Press 1 to Confirm or 2 to Cancel");
-            int check = scanner.nextInt();
-            if(check == 1){
-                accounts.remove(account);
-                System.out.println("Account removed successfully");
-            }else{
-                System.out.println("Account failed to be removed");
-            }
-        }
-    }
-
-    public static void searchAccount(String accountName){
-        for (Account account : accounts) {
-            String nameInAccounts = account.getFullName();
-            if (nameInAccounts.equals(accountName)) {
-                System.out.println("Account exists");
-            }
-        }
-}
-       
-    
 }
 
