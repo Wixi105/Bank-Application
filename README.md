@@ -1,6 +1,5 @@
 # Bank-Application
-This is an application for a bank with a few features as it is still in development so help is welcome.
-
+This is a banking app with the most minimal of features. Still in development.
 ## Installation
 The application requires no installation, but it requires users to have a Java JDK and a database driver for MySQL installed to be able to run it. For Linux systems
 you can refer to your distributions to wiki to find the available Java JDK you can install. 
