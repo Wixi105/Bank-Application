@@ -43,21 +43,21 @@ Navigate to the Main.java file, and run the program.
 
 1. The program starts by asking users to fill in their details so it can be added to a database.
 
-![Screenshot 1] (images/BankApp1.png)
+![Screenshot 1] (https://github.com/Wixi105/Bank-Application/blob/main/images/BankApp1.png)
 
 
 2. Once details are collected, it prints to STDOUT, the user's name and account details but it also prompts the user to initiate a deposit, or do some of the other items on the menu.
 Option 1 : initiates a deposit
 Option 2: shows account details.
 Option 3: deletes your account from the database;
-[2]: images/BankApp2.png
+![Screenshot 2] (https://github.com/Wixi105/Bank-Application/blob/main/images/BankApp2.png)
 
 Output of option 2 being displayed.
-[3]: images/BankApp3.png
+![Screenshot 3] (https://github.com/Wixi105/Bank-Application/blob/main/images/BankApp3.png)
 
 
 3. Once your data is captured, it appears in the databases and is kept for safe keeping
-[4]: images/Bank4.png
+![Screenshot 4] (https://github.com/Wixi105/Bank-Application/blob/main/images/Bank4.png)
 
 
 
