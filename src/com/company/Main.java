@@ -13,7 +13,8 @@ public class Main {
     public static void main(String[] args) {
 
         Account account1 = createAccount();
-
+        Account account2 = createAccount();
+        Account account3 = createAccount();
 
     }
 
@@ -22,19 +23,19 @@ public class Main {
             System.out.println("Welcome to First Hulu Bank");
     
             //Taking the name of account
-            System.out.print("Enter your first name: ");
+            System.out.println("Enter your first name: ");
             String firstName = scanner.nextLine();
 
-            System.out.print("Enter your middle name: ");
+            System.out.println("Enter your middle name: ");
             String middleName = scanner.nextLine();
 
-            System.out.print("Enter your last name: ");
+            System.out.println("Enter your last name: ");
             String lastName = scanner.nextLine();
     
-            System.out.print("Enter your email address: ");
+            System.out.println("Enter your email address: ");
             String email = scanner.nextLine();
     
-            System.out.print("Enter your phone number: ");
+            System.out.println("Enter your phone number: ");
             String phoneNo = scanner.nextLine();
     
             //splitting and working with text.
@@ -46,8 +47,7 @@ public class Main {
             int balance = 0;
 
             System.out.println("Hello " + firstName +" "+ lastName + ", your account number is: " + accountNumber + " with a balance of " + balance);
-    
-            //getting date.
+
 
         try {
 //           Class.forName("org.mariadb.jdbc.Driver");
